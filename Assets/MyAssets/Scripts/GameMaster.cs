@@ -24,11 +24,9 @@ public class GameMaster : MonoBehaviour
         }
     }
 
-    //Show add then restart game
+    //Show ads then restart game
     public void GameOver()
     {
-        //Show add
-        //After add reload scene:
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
