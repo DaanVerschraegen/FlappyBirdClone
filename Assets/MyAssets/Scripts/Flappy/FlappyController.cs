@@ -5,7 +5,6 @@ using UnityEngine;
 public class FlappyController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 200f;
-
     private bool isDead;
     private bool jump;
     private Rigidbody2D rb2D;

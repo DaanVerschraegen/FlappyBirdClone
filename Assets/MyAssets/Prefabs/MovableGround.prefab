@@ -94,6 +94,8 @@ GameObject:
   - component: {fileID: 6305669164195234570}
   - component: {fileID: 6308342382177628511}
   - component: {fileID: 2803532748635676292}
+  - component: {fileID: 1566204523502073131}
+  - component: {fileID: 4758400450826951036}
   m_Layer: 0
   m_Name: MovableGround
   m_TagString: Ground
@@ -175,6 +177,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 874c7b3548f468d4589d75afd3fe9aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1566204523502073131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305669164195234568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46c7ba59d6ecdb4eb9b32f422af71e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &4758400450826951036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305669164195234568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d46c7ba59d6ecdb4eb9b32f422af71e2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6305669164348970716

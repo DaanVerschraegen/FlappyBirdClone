@@ -6,10 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
-
     public float movingSpeed = -1.5f;
-
-    [SerializeField] private MovingObject movingObject;
     
     private void Awake()
     {
@@ -26,7 +23,6 @@ public class GameMaster : MonoBehaviour
     //Show add then restart game
     public void GameOver()
     {
-        movingObject.StopScrolling();
         //Show add
         //After add reload scene:
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);

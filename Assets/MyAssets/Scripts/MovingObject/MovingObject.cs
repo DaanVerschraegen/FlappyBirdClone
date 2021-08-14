@@ -25,10 +25,4 @@ public class MovingObject : MonoBehaviour
     {
         rb2D.velocity = new Vector2(GameMaster.instance.movingSpeed, 0);
     }
-
-    public void StopScrolling()
-    {
-        rb2D.velocity = Vector2.zero;
-    }
-
 }
