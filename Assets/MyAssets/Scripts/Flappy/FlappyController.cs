@@ -12,17 +12,12 @@ public class FlappyController : MonoBehaviour
 
     private void Awake()
     {
-        InitialiseFlappy();
+        Initialise();
     }
 
-    private void InitialiseFlappy()
+    private void Initialise()
     {
         rb2D = GetComponent<Rigidbody2D>();
-        ResetFlappyVariables();
-    }
-
-    public void ResetFlappyVariables()
-    {
         isDead = false;
         jump = false;
     }
@@ -55,9 +50,11 @@ public class FlappyController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D col)
     {
+        //Game ends when Flappy hits either a pipe or the ground
         if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground")
         {
             isDead = true;
+            GameMaster.instance.GameOver();
         }
     }
 }
