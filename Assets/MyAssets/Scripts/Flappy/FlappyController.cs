@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FlappyController : MonoBehaviour
 {
-    public float jumpForce = 200f;
+    [SerializeField] private float jumpForce = 200f;
 
     private bool isDead;
     private bool jump;
@@ -12,9 +12,19 @@ public class FlappyController : MonoBehaviour
 
     private void Awake()
     {
+        InitialiseFlappy();
+    }
+
+    private void InitialiseFlappy()
+    {
+        rb2D = GetComponent<Rigidbody2D>();
+        ResetFlappyVariables();
+    }
+
+    public void ResetFlappyVariables()
+    {
         isDead = false;
         jump = false;
-        rb2D = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -41,5 +51,13 @@ public class FlappyController : MonoBehaviour
     {
         rb2D.velocity = Vector2.zero;
         rb2D.AddForce(new Vector2(0, jumpForce));
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground")
+        {
+            isDead = true;
+        }
     }
 }
