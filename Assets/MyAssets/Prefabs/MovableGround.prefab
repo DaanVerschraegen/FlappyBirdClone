@@ -92,6 +92,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6305669164195234571}
   - component: {fileID: 6305669164195234570}
+  - component: {fileID: 6308342382177628511}
+  - component: {fileID: 2803532748635676292}
   m_Layer: 0
   m_Name: MovableGround
   m_TagString: Ground
@@ -142,6 +144,39 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 9, y: 1.45}
   m_EdgeRadius: 0
+--- !u!50 &6308342382177628511
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305669164195234568}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &2803532748635676292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6305669164195234568}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 874c7b3548f468d4589d75afd3fe9aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6305669164348970716
 GameObject:
   m_ObjectHideFlags: 0
