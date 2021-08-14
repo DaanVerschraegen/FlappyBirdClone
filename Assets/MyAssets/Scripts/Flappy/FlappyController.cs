@@ -25,7 +25,7 @@ public class FlappyController : MonoBehaviour
     {
         if (!isDead)
         {
-            if(Input.GetMouseButtonDown(0))
+            if(Input.GetButtonDown("LeftMouseClick"))
             {
                 jump = true;
             }
