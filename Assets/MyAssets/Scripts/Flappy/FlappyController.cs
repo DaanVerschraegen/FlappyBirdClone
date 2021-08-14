@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(AudioSource))]
 public class FlappyController : MonoBehaviour
 {
     [SerializeField] private float jumpForce = 200f;
     private bool isDead;
     private bool jump;
     private Rigidbody2D rb2D;
+    private AudioSource audioSrc;
 
     private void Awake()
     {
@@ -17,6 +20,7 @@ public class FlappyController : MonoBehaviour
     private void Initialise()
     {
         rb2D = GetComponent<Rigidbody2D>();
+        audioSrc = GetComponent<AudioSource>();
         isDead = false;
         jump = false;
     }
@@ -44,6 +48,7 @@ public class FlappyController : MonoBehaviour
     private void Jump()
     {
         rb2D.velocity = Vector2.zero;
+        audioSrc.Play();
         rb2D.AddForce(new Vector2(0, jumpForce));
     }
 
