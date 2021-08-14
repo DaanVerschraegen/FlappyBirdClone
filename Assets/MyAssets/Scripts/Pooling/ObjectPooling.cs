@@ -44,7 +44,6 @@ public class ObjectPooling : MonoBehaviour
             float randomYPosition = Random.Range(spawnPosYMin, spawnPosYMax);
             poolObjects[currentPoolObject].transform.position = new Vector2(spawnPosX, randomYPosition);
             currentPoolObject++;
-            print(currentPoolObject + " > " + currentPoolObject % poolSize);
             currentPoolObject %= poolSize;
         }
     }
