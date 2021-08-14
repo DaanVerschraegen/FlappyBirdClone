@@ -6,10 +6,15 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class FlappyController : MonoBehaviour
 {
+    [Header("Flappy Settings")]
     [SerializeField] private float jumpForce = 200f;
     private bool isDead;
     private bool jump;
     private Rigidbody2D rb2D;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip audioFly;
+    [SerializeField] private AudioClip audioThump;
     private AudioSource audioSrc;
 
     private void Awake()
@@ -48,7 +53,7 @@ public class FlappyController : MonoBehaviour
     private void Jump()
     {
         rb2D.velocity = Vector2.zero;
-        audioSrc.Play();
+        PlayAudio(audioFly);
         rb2D.AddForce(new Vector2(0, jumpForce));
     }
 
@@ -57,8 +62,15 @@ public class FlappyController : MonoBehaviour
         //Game ends when Flappy hits either a pipe or the ground
         if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground")
         {
+            PlayAudio(audioThump);
             isDead = true;
             GameMaster.instance.GameOver();
         }
+    }
+
+    private void PlayAudio(AudioClip audioToPlay)
+    {
+        audioSrc.clip = audioToPlay;
+        audioSrc.Play();
     }
 }
