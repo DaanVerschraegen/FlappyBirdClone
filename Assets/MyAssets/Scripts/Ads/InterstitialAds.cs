@@ -42,6 +42,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
+        RestartLevel();
     }
 
     public void OnUnityAdsShowStart(string adUnitId){}
@@ -49,6 +50,12 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void OnUnityAdsShowClick(string adUnitId){}
 
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
+    {
+        Debug.Log("Ads Show Completed");
+        RestartLevel();
+    }
+
+    private void RestartLevel()
     {
         GameMaster.instance.RestartLevel();
     }
