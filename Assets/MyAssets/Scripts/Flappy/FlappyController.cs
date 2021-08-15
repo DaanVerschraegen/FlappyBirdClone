@@ -60,14 +60,11 @@ public class FlappyController : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D col)
     {
         //Game ends when Flappy hits either a pipe or the ground
-        if(col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground")
+        if(!isDead && (col.gameObject.tag == "Pipe" || col.gameObject.tag == "Ground"))
         {
             PlayAudio(audioThump);
-            if(!isDead)
-            {
-                isDead = true;
-                GameMaster.instance.GameOver();
-            }
+            isDead = true;
+            GameMaster.instance.GameOver();
         }
     }
 
