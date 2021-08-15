@@ -59,7 +59,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     /*public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
-        RestartLevel();
+        UnPauseGame();
     }
 
     public void OnUnityAdsShowStart(string adUnitId){}
@@ -69,7 +69,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     public void OnUnityAdsShowComplete(string adUnitId, UnityAdsShowCompletionState showCompletionState)
     {
         Debug.Log("Ads Show Completed");
-        RestartLevel();
+        UnPauseGame();
     }*/
 
     public void OnUnityAdsReady(string adUnitId){}
@@ -77,7 +77,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     public void OnUnityAdsDidError(string message)
     {
         Debug.Log("Ad Error: " + message);
-        RestartLevel();
+        UnPauseGame();
     }
 
     public void OnUnityAdsDidStart(string adUnitId){}
@@ -85,7 +85,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     public void OnUnityAdsDidFinish(string adUnitId, ShowResult showResult)
     {
         Debug.Log("Ads finished");
-        RestartLevel();
+        UnPauseGame();
     }
 
     public void OnDestroy()
@@ -93,8 +93,8 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
         Advertisement.RemoveListener(this);
     }
 
-    private void RestartLevel()
+    private void UnPauseGame()
     {
-        GameMaster.instance.RestartLevel();
+        GameMaster.instance.UnPauseGame();
     }
 }

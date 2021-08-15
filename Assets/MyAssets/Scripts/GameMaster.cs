@@ -31,10 +31,11 @@ public class GameMaster : MonoBehaviour
     }
 
     //Show ads then restart game
-    public void GameOver()
+    public void GameOver(AudioSource audioSrc)
     {
         isGameOver = true;
         InterstitialAds.instance.ShowAd();
+        StartCoroutine(RestartLevelAfterDeadAudio(audioSrc));
     }
 
     //Add 1 score point per column flown trough
@@ -44,8 +45,26 @@ public class GameMaster : MonoBehaviour
         txtScore.text = score.ToString();
     }
 
-    public void RestartLevel()
+    IEnumerator RestartLevelAfterDeadAudio(AudioSource audioSrc)
+    {
+        float clipDuration = audioSrc.clip.length;
+        yield return new WaitForSeconds(clipDuration);
+        RestartLevel();
+    }
+
+    private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        PauseGame();
+    }
+
+    public void PauseGame()
+    {
+        Time.timeScale = 0f;
+    }
+
+    public void UnPauseGame()
+    {
+        Time.timeScale = 1f;
     }
 }

@@ -34,10 +34,17 @@ public class FlappyController : MonoBehaviour
     {
         if (!isDead)
         {
+            if(Input.touchCount > 0 && Input.touches[0].phase == TouchPhase.Began)
+            {
+                jump = true;
+            }
+
+#if UNITY_EDITOR
             if(Input.GetButtonDown("LeftMouseClick"))
             {
                 jump = true;
             }
+#endif
         }   
     }
 
@@ -64,7 +71,7 @@ public class FlappyController : MonoBehaviour
         {
             PlayAudio(audioThump);
             isDead = true;
-            GameMaster.instance.GameOver();
+            GameMaster.instance.GameOver(audioSrc);
         }
     }
 
