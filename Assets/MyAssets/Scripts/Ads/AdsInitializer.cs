@@ -5,6 +5,8 @@ using UnityEngine.Advertisements;
 
 public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 {
+    public static AdsInitializer instance;
+
     [SerializeField] private string androidGameId;
     [SerializeField] private string iOsGameId;
     [SerializeField] private bool testMode = true;
@@ -13,7 +15,15 @@ public class AdsInitializer : MonoBehaviour, IUnityAdsInitializationListener
 
     private void Awake()
     {
-        InitializeAds();
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            InitializeAds();
+            instance = this;
+        }
     }
 
     public void InitializeAds()

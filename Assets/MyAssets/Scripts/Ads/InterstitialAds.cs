@@ -3,17 +3,33 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Advertisements;
 
-[RequireComponent(typeof(AdsInitializer))]
-public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsShowListener
+public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsListener
 {
+    public static InterstitialAds instance;
+
     [SerializeField] private string androidAdUnitId = "Interstitial_Android";
     [SerializeField] private string iOsAdUnitId = "Interstitial_iOS";
     private string adUnitId;
 
     private void Awake()
     {
+        if(instance != null && instance != this)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            Initialise();
+            instance = this;
+        }
+        
+    }
+
+    private void Initialise()
+    {
         //Get the Ad Unit ID for the current platform:
         adUnitId = (Application.platform == RuntimePlatform.IPhonePlayer) ? iOsAdUnitId : androidAdUnitId;
+        Advertisement.AddListener(this);
     }
 
     //Load content to the Ad Unit:
@@ -28,7 +44,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     public void ShowAd()
     {
         Debug.Log("Showing Ad: " + adUnitId);
-        Advertisement.Show(adUnitId, this);
+        Advertisement.Show(adUnitId);
     }
 
     //Implement Load Listener and Show Listener interface methods:
@@ -39,7 +55,8 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
         Debug.Log($"Error loading Ad Unit: {adUnitId} - {error.ToString()} - {message}");
     }
 
-    public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
+    //IUnityAdsShowListener methods not working correctly
+    /*public void OnUnityAdsShowFailure(string adUnitId, UnityAdsShowError error, string message)
     {
         Debug.Log($"Error showing Ad Unit {adUnitId}: {error.ToString()} - {message}");
         RestartLevel();
@@ -53,6 +70,27 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsSh
     {
         Debug.Log("Ads Show Completed");
         RestartLevel();
+    }*/
+
+    public void OnUnityAdsReady(string adUnitId){}
+
+    public void OnUnityAdsDidError(string message)
+    {
+        Debug.Log("Ad Error: " + message);
+        RestartLevel();
+    }
+
+    public void OnUnityAdsDidStart(string adUnitId){}
+
+    public void OnUnityAdsDidFinish(string adUnitId, ShowResult showResult)
+    {
+        Debug.Log("Ads finished");
+        RestartLevel();
+    }
+
+    public void OnDestroy()
+    {
+        Advertisement.RemoveListener(this);
     }
 
     private void RestartLevel()

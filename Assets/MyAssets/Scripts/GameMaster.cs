@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
 
-[RequireComponent(typeof(InterstitialAds))]
 public class GameMaster : MonoBehaviour
 {
     public static GameMaster instance;
@@ -13,7 +12,6 @@ public class GameMaster : MonoBehaviour
 
     private int score = 0;
     [SerializeField] private TextMeshProUGUI txtScore;
-    private InterstitialAds adsManager;
     
     private void Awake()
     {
@@ -23,26 +21,20 @@ public class GameMaster : MonoBehaviour
         }
         else
         {
-            Initialise();
             instance = this;
         }
     }
 
-    private void Initialise()
-    {
-        adsManager = GetComponent<InterstitialAds>();
-    }
-
     private void Start()
     {
-        adsManager.LoadAd();
+        InterstitialAds.instance.LoadAd();
     }
 
     //Show ads then restart game
     public void GameOver()
     {
         isGameOver = true;
-        adsManager.ShowAd();
+        InterstitialAds.instance.ShowAd();
     }
 
     //Add 1 score point per column flown trough
