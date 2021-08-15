@@ -28,6 +28,7 @@ public class GameMaster : MonoBehaviour
     private void Start()
     {
         InterstitialAds.instance.LoadAd();
+        PauseGame();
     }
 
     //Show ads then restart game
@@ -35,7 +36,7 @@ public class GameMaster : MonoBehaviour
     {
         isGameOver = true;
         InterstitialAds.instance.ShowAd();
-        StartCoroutine(RestartLevelAfterDeadAudio(audioSrc));
+        StartCoroutine(RestartLevelAfterAudio(audioSrc));
     }
 
     //Add 1 score point per column flown trough
@@ -45,7 +46,7 @@ public class GameMaster : MonoBehaviour
         txtScore.text = score.ToString();
     }
 
-    private IEnumerator RestartLevelAfterDeadAudio(AudioSource audioSrc)
+    private IEnumerator RestartLevelAfterAudio(AudioSource audioSrc)
     {
         float clipDuration = audioSrc.clip.length;
         yield return new WaitForSeconds(clipDuration);
@@ -55,7 +56,6 @@ public class GameMaster : MonoBehaviour
     private void RestartLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        PauseGame();
     }
 
     public void PauseGame()

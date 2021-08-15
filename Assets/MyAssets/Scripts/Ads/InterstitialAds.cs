@@ -53,22 +53,16 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     }
 
     //Implement Load Listener and Show Listener interface methods:
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message) { }
-
-    public void OnUnityAdsDidError(string message)
-    {
-        UnPauseGame();
-    }
-
-    public void OnUnityAdsDidFinish(string adUnitId, ShowResult showResult)
-    {
-        UnPauseGame();
-    }
-
     public void OnUnityAdsAdLoaded(string adUnitId)
     {
         isAdLoaded = true;
     }
+
+    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message) { }
+
+    public void OnUnityAdsDidError(string message) { }
+
+    public void OnUnityAdsDidFinish(string adUnitId, ShowResult showResult) { }
 
     public void OnUnityAdsReady(string adUnitId) { }
 
@@ -77,10 +71,5 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     public void OnDestroy()
     {
         Advertisement.RemoveListener(this);
-    }
-
-    private void UnPauseGame()
-    {
-        GameMaster.instance.UnPauseGame();
     }
 }
