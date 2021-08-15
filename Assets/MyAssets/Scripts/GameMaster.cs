@@ -12,10 +12,10 @@ public class GameMaster : MonoBehaviour
 
     private int score = 0;
     [SerializeField] private TextMeshProUGUI txtScore;
-    
+
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -45,7 +45,7 @@ public class GameMaster : MonoBehaviour
         txtScore.text = score.ToString();
     }
 
-    IEnumerator RestartLevelAfterDeadAudio(AudioSource audioSrc)
+    private IEnumerator RestartLevelAfterDeadAudio(AudioSource audioSrc)
     {
         float clipDuration = audioSrc.clip.length;
         yield return new WaitForSeconds(clipDuration);
