@@ -10,10 +10,11 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     [SerializeField] private string androidAdUnitId = "Interstitial_Android";
     [SerializeField] private string iOsAdUnitId = "Interstitial_iOS";
     private string adUnitId;
+    private bool isAdLoaded = false;
 
     private void Awake()
     {
-        if(instance != null && instance != this)
+        if (instance != null && instance != this)
         {
             Destroy(gameObject);
         }
@@ -22,7 +23,7 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
             Initialise();
             instance = this;
         }
-        
+
     }
 
     private void Initialise()
@@ -45,8 +46,14 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
         Advertisement.Show(adUnitId);
     }
 
+    private IEnumerator ShowAdWhenLoaded()
+    {
+        yield return new WaitUntil(() => isAdLoaded);
+        Advertisement.Show(adUnitId);
+    }
+
     //Implement Load Listener and Show Listener interface methods:
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message){}
+    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message) { }
 
     public void OnUnityAdsDidError(string message)
     {
@@ -58,11 +65,14 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
         UnPauseGame();
     }
 
-    public void OnUnityAdsAdLoaded(string adUnitId){}
+    public void OnUnityAdsAdLoaded(string adUnitId)
+    {
+        isAdLoaded = true;
+    }
 
-    public void OnUnityAdsReady(string adUnitId){}
+    public void OnUnityAdsReady(string adUnitId) { }
 
-    public void OnUnityAdsDidStart(string adUnitId){}
+    public void OnUnityAdsDidStart(string adUnitId) { }
 
     public void OnDestroy()
     {
