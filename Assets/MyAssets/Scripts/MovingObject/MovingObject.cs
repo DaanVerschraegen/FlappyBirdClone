@@ -22,8 +22,21 @@ public class MovingObject : MonoBehaviour
         StartScrolling();
     }
 
-    public void StartScrolling()
+    private void Update()
+    {
+        if(GameMaster.instance.isGameOver)
+        {
+            StopScrolling();
+        }
+    }
+
+    private void StartScrolling()
     {
         rb2D.velocity = new Vector2(GameMaster.instance.movingSpeed, 0);
+    }
+
+    private void StopScrolling()
+    {
+        rb2D.velocity = Vector2.zero;
     }
 }

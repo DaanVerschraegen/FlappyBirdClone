@@ -36,15 +36,18 @@ public class ObjectPooling : MonoBehaviour
 
     private void Update()
     {
-        timeSinceLastMoved += Time.deltaTime;
-
-        if(timeSinceLastMoved >= spawnRate)
+        if(!GameMaster.instance.isGameOver)
         {
-            timeSinceLastMoved = 0;
-            float randomYPosition = Random.Range(spawnPosYMin, spawnPosYMax);
-            poolObjects[currentPoolObject].transform.position = new Vector2(spawnPosX, randomYPosition);
-            currentPoolObject++;
-            currentPoolObject %= poolSize;
+            timeSinceLastMoved += Time.deltaTime;
+
+            if(timeSinceLastMoved >= spawnRate)
+            {
+                timeSinceLastMoved = 0;
+                float randomYPosition = Random.Range(spawnPosYMin, spawnPosYMax);
+                poolObjects[currentPoolObject].transform.position = new Vector2(spawnPosX, randomYPosition);
+                currentPoolObject++;
+                currentPoolObject %= poolSize;
+            }
         }
     }
 }
