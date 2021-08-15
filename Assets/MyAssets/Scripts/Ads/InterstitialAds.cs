@@ -35,7 +35,6 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     //Load content to the Ad Unit:
     public void LoadAd()
     {
-        Debug.Log("Loading Ad: " + adUnitId);
         Advertisement.Load(adUnitId, this);
     }
 
@@ -43,32 +42,26 @@ public class InterstitialAds : MonoBehaviour, IUnityAdsLoadListener, IUnityAdsLi
     //Be sure to load the ad first with LoadAd method
     public void ShowAd()
     {
-        Debug.Log("Showing Ad: " + adUnitId);
         Advertisement.Show(adUnitId);
     }
 
     //Implement Load Listener and Show Listener interface methods:
-    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message)
-    {
-        Debug.Log($"Error loading Ad Unit: {adUnitId} - {error.ToString()} - {message}");
-    }
+    public void OnUnityAdsFailedToLoad(string adUnitId, UnityAdsLoadError error, string message){}
 
     public void OnUnityAdsDidError(string message)
     {
-        Debug.Log("Ad Error: " + message);
         UnPauseGame();
     }
 
     public void OnUnityAdsDidFinish(string adUnitId, ShowResult showResult)
     {
-        Debug.Log("Ads finished");
         UnPauseGame();
     }
 
     public void OnUnityAdsAdLoaded(string adUnitId){}
 
     public void OnUnityAdsReady(string adUnitId){}
-    
+
     public void OnUnityAdsDidStart(string adUnitId){}
 
     public void OnDestroy()
